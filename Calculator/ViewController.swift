@@ -61,6 +61,34 @@ class ViewController: UIViewController {
         model.addToNewValue(digit: "9")
         Label.text = model.providedValue
     }
+    @IBAction func percentage(_ sender: Any) {
+        model.percentage()
+        if model.computedValue != nil{
+            Label.text = String(format: "%g", model.computedValue!)
+        }
+        
+    }
+    @IBAction func plusminus(_ sender: Any) {
+        model.plusminus()
+        if model.computedValue != nil{ 
+            Label.text = String(format: "%g", model.computedValue!)
+        }
+        
+    }
+    @IBAction func clear(_ sender: Any) {
+        model.clear()
+        Label.text = ""
+    }
+    
+    @IBAction func addition(_ sender: Any) {
+        model.addition()
+    }
+    @IBAction func subtraction(_ sender: Any) {
+        model.subtraction()
+    }
+    @IBAction func divide(_ sender: Any) {
+        model.divide()
+    }
     @IBAction func multiply(_ sender: Any) {
         model.multiply()
     }

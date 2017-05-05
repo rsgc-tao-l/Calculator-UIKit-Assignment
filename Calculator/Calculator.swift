@@ -22,9 +22,24 @@ class Calculator {
         providedValue = providedValue + digit
     }
     
-    /**
-     Sets calculator operation to multiplication, and computes a new value, if needed.
-     */
+    //set the calculator operation to addition
+    func addition() {
+        operation = Operation.addition
+        
+        updateState()
+    }
+    //set the calculator operation to minus.
+    func subtraction() {
+        operation = Operation.subtraction
+        
+        updateState()
+    }
+    //set the curent operaton to percentage.
+    func percentage() {
+        computedValue = Double(providedValue)! / 100
+    }
+    //Sets calculator operation to multiplication, and computes a new value, if needed.
+    
     func multiply() {
         
         // Set the operation
@@ -32,7 +47,10 @@ class Calculator {
         
         updateState()
     }
-    
+    func plusminus() {
+        computedValue = Double(providedValue)! * -1
+        providedValue = ""
+    }
     /**
      Sets calculator operation to division, and computes a new value, if needed.
      */
@@ -74,7 +92,7 @@ class Calculator {
                 // 2. When in this branch, a new provided value has been given.
                 
                 // So, perform the operation!
-                equals()    
+                equals()
             }
             
         }
@@ -93,6 +111,10 @@ class Calculator {
             computedValue = computedValue! * Double(providedValue)!
         } else if operation == Operation.division {
             computedValue = computedValue! / Double(providedValue)!
+        }else if operation == Operation.addition{
+            computedValue = computedValue!+Double(providedValue)!
+        }else if operation == Operation.subtraction{
+            computedValue = computedValue! - Double(providedValue)!
         }
         
         // The operation selected has been performed, so get ready to receive new operation
@@ -120,6 +142,8 @@ class Calculator {
         operation = nil
         providedValue = ""
         computedValue = nil
+        
+        updateState()
     }
     
 }
