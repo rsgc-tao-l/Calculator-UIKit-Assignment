@@ -38,16 +38,12 @@ class Calculator {
     func percentage() {
         
         if computedValue != nil{
-            
             if providedValue != "" {
                 computedValue = Double(providedValue)! / 100
             } else {
-                makeProvidedValueComputedValue()
                 computedValue = computedValue! / 100
             }
-            
-        } else {
-            // computed value is nil
+        }else {
             makeProvidedValueComputedValue()
             computedValue = computedValue! / 100
         }
