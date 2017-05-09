@@ -86,6 +86,10 @@ class ViewController: UIViewController {
     @IBAction func subtraction(_ sender: Any) {
         model.subtraction()
     }
+    @IBAction func decimaldot(_ sender: Any) {
+        model.addToNewValue(digit: ".")
+        Label.text = model.providedValue
+    }
     @IBAction func divide(_ sender: Any) {
         model.divide()
     }

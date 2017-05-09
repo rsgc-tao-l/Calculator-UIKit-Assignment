@@ -36,16 +36,23 @@ class Calculator {
     }
     //set the curent operaton to percentage.
     func percentage() {
-        
-        if computedValue != nil{
-            if providedValue != "" {
-                computedValue = Double(providedValue)! / 100
-            } else {
+        if providedValue != "" {
+            if computedValue != nil{
+                if providedValue != "" {
+                    computedValue = Double(providedValue)! / 100
+                } else {
+                    computedValue = computedValue! / 100
+                }
+            }else {
+                makeProvidedValueComputedValue()
                 computedValue = computedValue! / 100
             }
-        }else {
-            makeProvidedValueComputedValue()
-            computedValue = computedValue! / 100
+        } else {
+            operation = nil
+            providedValue = ""
+            computedValue = nil
+            
+            updateState()
         }
     }
     
@@ -59,18 +66,25 @@ class Calculator {
         updateState()
     }
     func plusminus() {
-        if computedValue != nil{
-            if providedValue != "" {
-                computedValue = Double(providedValue)! * -1
-            } else {
+        if providedValue != ""{
+            if computedValue != nil{
+                if providedValue != "" {
+                    computedValue = Double(providedValue)! * -1
+                } else {
+                    computedValue = computedValue! * -1
+                }
+            }else {
+                makeProvidedValueComputedValue()
                 computedValue = computedValue! * -1
             }
-        }else {
-            makeProvidedValueComputedValue()
-            computedValue = computedValue! * -1
+        } else {
+            operation = nil
+            providedValue = ""
+            computedValue = nil
+            
+            updateState()
         }
     }
-    
     /**
      Sets calculator operation to division, and computes a new value, if needed.
      */
