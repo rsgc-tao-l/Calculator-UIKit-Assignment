@@ -70,7 +70,7 @@ class ViewController: UIViewController {
     }
     @IBAction func plusminus(_ sender: Any) {
         model.plusminus()
-        if model.computedValue != nil{ 
+        if model.computedValue != nil{
             Label.text = String(format: "%g", model.computedValue!)
         }
         

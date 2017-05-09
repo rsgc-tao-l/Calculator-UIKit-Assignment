@@ -36,8 +36,23 @@ class Calculator {
     }
     //set the curent operaton to percentage.
     func percentage() {
-        computedValue = Double(providedValue)! / 100
+        
+        if computedValue != nil{
+            
+            if providedValue != "" {
+                computedValue = Double(providedValue)! / 100
+            } else {
+                makeProvidedValueComputedValue()
+                computedValue = computedValue! / 100
+            }
+            
+        } else {
+            // computed value is nil
+            makeProvidedValueComputedValue()
+            computedValue = computedValue! / 100
+        }
     }
+    
     //Sets calculator operation to multiplication, and computes a new value, if needed.
     
     func multiply() {
@@ -48,9 +63,18 @@ class Calculator {
         updateState()
     }
     func plusminus() {
-        computedValue = Double(providedValue)! * -1
-        providedValue = ""
+        if computedValue != nil{
+            if providedValue != "" {
+                computedValue = Double(providedValue)! * -1
+            } else {
+                computedValue = computedValue! * -1
+            }
+        }else {
+            makeProvidedValueComputedValue()
+            computedValue = computedValue! * -1
+        }
     }
+    
     /**
      Sets calculator operation to division, and computes a new value, if needed.
      */
