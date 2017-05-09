@@ -134,13 +134,17 @@ class Calculator {
         if providedValue != ""{
             // Check operation type
             if operation == Operation.multiplication {
-                computedValue = computedValue! * Double(providedValue)!
+                makeProvidedValueComputedValue()
+                computedValue = computedValue! * computedValue!
             } else if operation == Operation.division {
-                computedValue = computedValue! / Double(providedValue)!
+                makeProvidedValueComputedValue()
+                computedValue = computedValue! / computedValue!
             }else if operation == Operation.addition{
-                computedValue = computedValue!+Double(providedValue)!
+                makeProvidedValueComputedValue()
+                computedValue = computedValue! + computedValue!
             }else if operation == Operation.subtraction{
-                computedValue = computedValue! - Double(providedValue)!
+                makeProvidedValueComputedValue()
+                computedValue = computedValue! - computedValue!
             }
         } else {
             clear()
