@@ -48,11 +48,7 @@ class Calculator {
                 computedValue = computedValue! / 100
             }
         } else {
-            operation = nil
-            providedValue = ""
-            computedValue = nil
-            
-            updateState()
+            computedValue = computedValue! / 100
         }
     }
     
@@ -78,11 +74,7 @@ class Calculator {
                 computedValue = computedValue! * -1
             }
         } else {
-            operation = nil
-            providedValue = ""
-            computedValue = nil
-            
-            updateState()
+            computedValue = computedValue! * -1
         }
     }
     /**
@@ -139,18 +131,20 @@ class Calculator {
      The current operation is performed on the computed value and the provided value.
      */
     func equals() {
-        
-        // Check operation type
-        if operation == Operation.multiplication {
-            computedValue = computedValue! * Double(providedValue)!
-        } else if operation == Operation.division {
-            computedValue = computedValue! / Double(providedValue)!
-        }else if operation == Operation.addition{
-            computedValue = computedValue!+Double(providedValue)!
-        }else if operation == Operation.subtraction{
-            computedValue = computedValue! - Double(providedValue)!
+        if providedValue != ""{
+            // Check operation type
+            if operation == Operation.multiplication {
+                computedValue = computedValue! * Double(providedValue)!
+            } else if operation == Operation.division {
+                computedValue = computedValue! / Double(providedValue)!
+            }else if operation == Operation.addition{
+                computedValue = computedValue!+Double(providedValue)!
+            }else if operation == Operation.subtraction{
+                computedValue = computedValue! - Double(providedValue)!
+            }
+        } else {
+            clear()
         }
-        
         // The operation selected has been performed, so get ready to receive new operation
         // and new value
         operation = nil
