@@ -7,9 +7,7 @@
 //
 
 import Foundation
-
 class Calculator {
-    
     // MARK: Properties
     var providedValue : String = ""
     var computedValue : Double? = nil
@@ -19,20 +17,76 @@ class Calculator {
     
     // MARK: Method(s) a.k.a. Function(s)
     func addToNewValue(digit : String) {
-        providedValue = providedValue.appending(digit)
+        providedValue = providedValue + digit
     }
     
-    /**
-     Sets calculator operation to multiplication, and computes a new value, if needed.
-     */
+    //set the calculator operation to addition
+    func addition() {
+        operation = Operation.addition
+        updateState()
+    }
+    //set the calculator operation to minus.
+    func subtraction() {
+        operation = Operation.subtraction
+        updateState()
+    }
+    //set the curent operaton to percentage.
+    func percentage() {
+        if providedValue == "" {
+            if var y = computedValue{
+                y = y / 100
+                
+                providedValue = String(format: "%g", y)
+            }
+        }else {
+            if var y = Double(providedValue) {
+                y = y / 100
+                
+                providedValue = String(format: "%g", y)
+            }
+        }
+    }
+    
+    
+    //Sets calculator operation to multiplication, and computes a new value, if needed.
+    
     func multiply() {
         
         // Set the operation
         operation = Operation.multiplication
-        
         updateState()
     }
-    
+    func plusminus() {
+        if providedValue == "" {
+            if var x = computedValue{
+                x = x * -1
+                
+                providedValue = String(format: "%g", x)
+            }
+        }else {
+            if var x = Double(providedValue) {
+                x = x * -1
+                
+                providedValue = String(format: "%g", x)
+            }
+        }
+    }
+    //        if providedValue != ""{
+    //            if computedValue != nil{
+    //                if providedValue != "" {
+    //                    computedValue = Double(providedValue)! * -1
+    //                } else {
+    //                    computedValue = computedValue! * -1
+    //                }
+    //            }else {
+    //                makeProvidedValueComputedValue()
+    //                computedValue = computedValue! * -1
+    //            }
+    //        } else {
+    //            computedValue = computedValue! * -1
+    //        }
+    //        x = x * -1
+    //    }
     /**
      Sets calculator operation to division, and computes a new value, if needed.
      */
@@ -74,7 +128,7 @@ class Calculator {
                 // 2. When in this branch, a new provided value has been given.
                 
                 // So, perform the operation!
-                equals()    
+                equals()
             }
             
         }
@@ -87,19 +141,23 @@ class Calculator {
      The current operation is performed on the computed value and the provided value.
      */
     func equals() {
-        
-        // Check operation type
-        if operation == Operation.multiplication {
-            computedValue = computedValue! * Double(providedValue)!
-        } else if operation == Operation.division {
-            computedValue = computedValue! / Double(providedValue)!
+        if providedValue != "" && computedValue != nil && providedValue != "."{
+            // Check operation type
+            if operation == Operation.multiplication{
+                computedValue = computedValue! * Double(providedValue)!
+            } else if operation == Operation.division {
+                computedValue = computedValue! / Double(providedValue)!
+            }else if operation == Operation.addition{
+                computedValue = computedValue!+Double(providedValue)!
+            }else if operation == Operation.subtraction{
+                computedValue = computedValue! - Double(providedValue)!
+            }
+            // The operation selected has been performed, so get ready to receive new operation
+            // and new value
+            operation = nil
+            providedValue = ""
+            
         }
-        
-        // The operation selected has been performed, so get ready to receive new operation
-        // and new value
-        operation = nil
-        providedValue = ""
-        
     }
     
     /**
@@ -120,6 +178,7 @@ class Calculator {
         operation = nil
         providedValue = ""
         computedValue = nil
+        updateState()
     }
     
 }
