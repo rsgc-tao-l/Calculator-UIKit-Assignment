@@ -25,71 +25,64 @@ class Calculator {
         operation = Operation.addition
         updateState()
     }
+    
     //set the calculator operation to minus.
     func subtraction() {
         operation = Operation.subtraction
         updateState()
     }
-    //set the curent operaton to percentage.
+    
+    //divide the current operated number by 100 to display its decimal form as a number out of 100.
     func percentage() {
+        // if the provided value is empty , the following operation can calculate the answer using the computedValue.
         if providedValue == "" {
+            // by using a seperate variable, the main variables like calculated and provided value wont be affected and thus would have less chance of having a crashing error.
             if var y = computedValue{
                 y = y / 100
-                
+                //make the provided value a string version of the variable y.
                 providedValue = String(format: "%g", y)
             }
+            //if the providedvalue is present instead, the code will get the answer using the provided value.
         }else {
+            // by using a seperate variable, the main variables like calculated and provided value wont be affected and thus would have less chance of having a crashing error.
             if var y = Double(providedValue) {
                 y = y / 100
-                
+                //make the provided value a string version of the variable y.
                 providedValue = String(format: "%g", y)
             }
         }
     }
     
-    
     //Sets calculator operation to multiplication, and computes a new value, if needed.
-    
     func multiply() {
         
         // Set the operation
         operation = Operation.multiplication
         updateState()
     }
+    
+    // changes the number given or operated on from negative to positive or positive to negave depending on its original value.
     func plusminus() {
+        //again, if the providedvalue is not give, the operation will be done to the computedValue and displayed using the providedValue. it should be noted that whether computedvalue is nill or not is not important in this case, for it did not force unwrap it and therefore will not crash.
         if providedValue == "" {
+            //the operation will be done to the temporary variable to reduce overall impact on the general code.
             if var x = computedValue{
                 x = x * -1
-                
+                //make the provided value a string version of the variable y.
                 providedValue = String(format: "%g", x)
             }
+            //same logic, if the providedvalue is given instead, the code will simply do the calculation on it and display it.
         }else {
+            //the operation will be done to the temporary variable to reduce overall impact on the general code.
             if var x = Double(providedValue) {
                 x = x * -1
-                
+                //make the provided value a string version of the variable y.
                 providedValue = String(format: "%g", x)
             }
         }
     }
-    //        if providedValue != ""{
-    //            if computedValue != nil{
-    //                if providedValue != "" {
-    //                    computedValue = Double(providedValue)! * -1
-    //                } else {
-    //                    computedValue = computedValue! * -1
-    //                }
-    //            }else {
-    //                makeProvidedValueComputedValue()
-    //                computedValue = computedValue! * -1
-    //            }
-    //        } else {
-    //            computedValue = computedValue! * -1
-    //        }
-    //        x = x * -1
-    //    }
-    /**
-     Sets calculator operation to division, and computes a new value, if needed.
-     */
+    
+    //set the operation to divide.
     func divide() {
         
         // Set the operation
@@ -179,5 +172,4 @@ class Calculator {
         computedValue = nil
         updateState()
     }
-    
 }
