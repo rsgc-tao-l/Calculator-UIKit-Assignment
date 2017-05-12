@@ -156,7 +156,6 @@ class Calculator {
             // and new value
             operation = nil
             providedValue = ""
-            
         }
     }
     

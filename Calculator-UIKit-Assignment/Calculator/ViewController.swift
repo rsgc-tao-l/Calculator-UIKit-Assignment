@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     //connecton between the interface and code
     @IBOutlet weak var Label: UILabel!
+    @IBOutlet weak var currentOperation: UILabel!
     //to bring out the calculator class
     var model = Calculator()
     override func viewDidLoad() {
@@ -18,6 +19,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         //clean up the label
         Label.text = ""
+        currentOperation.text = ""
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,13 +84,16 @@ class ViewController: UIViewController {
     @IBAction func clear(_ sender: Any) {
         model.clear()
         Label.text = ""
+        currentOperation.text = ""
     }
     
     @IBAction func addition(_ sender: Any) {
         model.addition()
+        currentOperation.text = "+"
     }
     @IBAction func subtraction(_ sender: Any) {
         model.subtraction()
+        currentOperation.text = "-"
     }
     @IBAction func decimaldot(_ sender: Any) {
         if model.providedValue != "."{
@@ -98,15 +103,18 @@ class ViewController: UIViewController {
     }
     @IBAction func divide(_ sender: Any) {
         model.divide()
+        currentOperation.text = "÷"
     }
     @IBAction func multiply(_ sender: Any) {
         model.multiply()
+        currentOperation.text = "x"
     }
     @IBAction func equal(_ sender: Any) {
         model.equals()
         if model.computedValue != nil{
             Label.text = String(format: "%g", model.computedValue!)
         }
+        currentOperation.text = ""
     }
     
     
